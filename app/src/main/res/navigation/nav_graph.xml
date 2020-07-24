@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/stationChooserFragment">
+
+    <fragment
+        android:id="@+id/stationChooserFragment"
+        android:name="com.kun.easytra.ui.stationchooser.StationChooserFragment"
+        android:label="fragment_station_chooser"
+        tools:layout="@layout/fragment_station_chooser" >
+        <action
+            android:id="@+id/action_stationChooserFragment_to_stationPickerFragment"
+            app:destination="@id/stationPickerFragment" />
+        <action
+            android:id="@+id/action_stationChooserFragment_to_allStationFragment"
+            app:destination="@id/allStationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stationPickerFragment"
+        android:name="com.kun.easytra.ui.stationpicker.StationPickerFragment"
+        android:label="fragment_station_picker"
+        tools:layout="@layout/fragment_station_picker" />
+    <fragment
+        android:id="@+id/allStationFragment"
+        android:name="com.kun.easytra.ui.allstation.AllStationFragment"
+        android:label="fragment_all_station"
+        tools:layout="@layout/fragment_all_station" />
+</navigation>

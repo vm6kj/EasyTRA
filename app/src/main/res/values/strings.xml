@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">EasyTRA</string>
+
+    <string name="departure">Departure</string>
+    <string name="arrive">Arrive</string>
+    <string name="retry">Retry</string>
+
+    <string-array name="city_array">
+        <item name="keelung">Keelung</item>
+        <item name="taipei">Taipei</item>
+        <item name="new_taipei">New Taipei</item>
+        <item name="taoyuan">Taoyuan</item>
+        <item name="hsinchu">Hsinchu</item>
+        <item name="miaoli">Miaoli</item>
+
+        <item name="taichung">Taichung</item>
+        <item name="changhua">Changhua</item>
+        <item name="nantou">Nantou</item>
+
+        <item name="yunlin">Yunlin</item>
+        <item name="chiayi">Chiayi</item>
+        <item name="tainan">Tainan</item>
+        <item name="kaohsiung">Kaohsiung</item>
+        <item name="pingtung">Pingtung</item>
+
+        <item name="yilan">Yilan</item>
+        <item name="hualien">Hualien</item>
+        <item name="taitung">Taitung</item>
+    </string-array>
+</resources>
