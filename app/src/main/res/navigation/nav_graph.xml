@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_stationChooserFragment_to_allStationFragment"
             app:destination="@id/allStationFragment" />
+        <action
+            android:id="@+id/action_stationChooserFragment_to_cityChooserFragment"
+            app:destination="@id/cityChooserFragment" />
     </fragment>
     <fragment
         android:id="@+id/stationPickerFragment"
@@ -27,4 +30,9 @@
         android:name="com.kun.easytra.ui.allstation.AllStationFragment"
         android:label="fragment_all_station"
         tools:layout="@layout/fragment_all_station" />
+    <fragment
+        android:id="@+id/cityChooserFragment"
+        android:name="com.kun.easytra.ui.citychooser.CityChooserFragment"
+        android:label="fragment_city_chooser"
+        tools:layout="@layout/fragment_city_chooser" />
 </navigation>

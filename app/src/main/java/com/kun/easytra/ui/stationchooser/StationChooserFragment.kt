@@ -29,7 +29,8 @@ class StationChooserFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         btn_departure.setOnClickListener {
-            val action1 = StationChooserFragmentDirections.actionStationChooserFragmentToStationPickerFragment()
+//            val action1 = StationChooserFragmentDirections.actionStationChooserFragmentToStationPickerFragment()
+            val action1 = StationChooserFragmentDirections.actionStationChooserFragmentToCityChooserFragment()
             findNavController().navigate(action1)
         }
 
