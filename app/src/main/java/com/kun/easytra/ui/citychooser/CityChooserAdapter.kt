@@ -3,20 +3,17 @@ package com.kun.easytra.ui.citychooser
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.kun.easytra.R
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import com.kun.easytra.databinding.CityItemInCityChooserBinding
 
-class CityChooserAdapter(private val onCityCLicked: (city: String) -> Unit) : RecyclerView.Adapter<CityChooserViewHolder>(), KoinComponent {
+class CityChooserAdapter(private val cityChooserViewModel: CityChooserViewModel) :
+    RecyclerView.Adapter<CityChooserViewHolder>() {
 
-    private val cityChooserViewModel: CityChooserViewModel by inject()
-    private var allCity = cityChooserViewModel.allCity.value
-    var onItemClick: ((String) -> Unit)? = null
+    private val allCity = cityChooserViewModel.allCity.value
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityChooserViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.city_item_in_city_chooser, parent, false)
-        return CityChooserViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = CityItemInCityChooserBinding.inflate(layoutInflater, parent, false)
+        return CityChooserViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -25,7 +22,7 @@ class CityChooserAdapter(private val onCityCLicked: (city: String) -> Unit) : Re
 
     override fun onBindViewHolder(holder: CityChooserViewHolder, position: Int) {
         allCity?.get(position)?.let {
-            holder.bindTo(it, onCityCLicked)
+            holder.bindTo(cityChooserViewModel, it)
         }
     }
 }

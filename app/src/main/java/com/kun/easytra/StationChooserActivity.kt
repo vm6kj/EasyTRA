@@ -2,13 +2,14 @@ package com.kun.easytra
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 
 class StationChooserActivity : AppCompatActivity() {
 
     private val TAG = "StationChooserActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        setupKoinFragmentFactory()
+        setupKoinFragmentFactory()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //        if (savedInstanceState == null) {

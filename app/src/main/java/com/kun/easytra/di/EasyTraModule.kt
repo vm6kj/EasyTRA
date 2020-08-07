@@ -16,15 +16,16 @@ import com.kun.easytra.ui.stationpicker.StationPickerFragment
 import com.kun.easytra.ui.stationpicker.StationPickerViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.fragment.dsl.fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel { StationChooserViewModel(get()) }
+    viewModel { StationChooserViewModel(androidApplication()) }
     viewModel { StationPickerViewModel() }
     viewModel { AllStationViewModel() }
-    viewModel { CityChooserViewModel(get()) }
+    viewModel { CityChooserViewModel(androidApplication()) }
 }
 
 val fragmentModule = module {
@@ -43,7 +44,12 @@ val mainModule = module {
 
     single { StationDataSourceFactory() }
     single { AllStationAdapter() }
-    single { (onCityClicked: (String) -> Unit) -> CityChooserAdapter(onCityClicked) }
+//    single { (onCityClicked: (String) -> Unit) -> CityChooserAdapter(onCityClicked) }
+    single { (cityChooserViewModel: CityChooserViewModel) ->
+        CityChooserAdapter(
+            cityChooserViewModel
+        )
+    }
     single { CoroutineScope(Dispatchers.IO) }
 }
 

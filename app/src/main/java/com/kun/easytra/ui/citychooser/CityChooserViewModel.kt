@@ -1,19 +1,22 @@
 package com.kun.easytra.ui.citychooser
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.kun.easytra.Event
 import com.kun.easytra.tradata.repository.ITraRepository
-import org.koin.core.KoinComponent
+import com.kun.easytra.ui.BaseAndroidViewModel
+import kotlinx.coroutines.launch
 import org.koin.core.inject
 
-class CityChooserViewModel(private val context: Application) : AndroidViewModel(context), KoinComponent {
+class CityChooserViewModel(private val context: Application) : BaseAndroidViewModel(context) {
 
-    private val traRepository: ITraRepository by inject()
+    private val TAG = "CityChooserViewModel"
+    private val traRepository by inject<ITraRepository>()
 
-    val allCity: MutableLiveData<List<String>> = MutableLiveData(emptyList())
-    val cityClicked : MutableLiveData<String> = MutableLiveData("")
+    var allCity: MutableLiveData<List<String>> = MutableLiveData(emptyList())
+    var cityClicked: MutableLiveData<Event<String>> = MutableLiveData()
 
     init {
         getAllCity()
@@ -23,7 +26,11 @@ class CityChooserViewModel(private val context: Application) : AndroidViewModel(
         allCity.value = traRepository.getAllCities(context)
     }
 
-    fun cityClicked(city: String) {
-        cityClicked.value = city
+    fun onCityClicked(city: String) = viewModelScope.launch {
+        Log.d(
+            TAG,
+            "cityClicked.hasObservers()=" + cityClicked.hasObservers() + ", onCityClicked! city=$city"
+        )
+        cityClicked.value = Event(city)
     }
 }

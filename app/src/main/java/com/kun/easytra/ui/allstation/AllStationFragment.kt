@@ -15,11 +15,6 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 class AllStationFragment : Fragment(), KoinComponent {
-
-    companion object {
-        fun newInstance() = AllStationFragment()
-    }
-
     private val allStationViewModel: AllStationViewModel by viewModel()
     private val stationAdapter: AllStationAdapter by inject()
 
@@ -34,7 +29,6 @@ class AllStationFragment : Fragment(), KoinComponent {
         super.onActivityCreated(savedInstanceState)
 
         list_all_station.addItemDecoration(DividerItemDecoration(this.context, LinearLayoutManager.VERTICAL))
-//        list_all_station.adapter = stationAdapter.withLoadStateFooter(AllStationLoadStateAdapter())
         list_all_station.adapter = stationAdapter
 
         allStationViewModel.getStationInfoList().observe(this.viewLifecycleOwner, Observer {

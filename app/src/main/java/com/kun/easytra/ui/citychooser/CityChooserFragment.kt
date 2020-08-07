@@ -2,72 +2,65 @@ package com.kun.easytra.ui.citychooser
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.kun.easytra.R
-import kotlinx.android.synthetic.main.fragment_city_chooser.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.KoinComponent
-import org.koin.core.get
-import org.koin.core.inject
+import com.kun.easytra.databinding.FragmentCityChooserBinding
+import com.kun.easytra.ui.BaseBindingFragment
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
 
-class CityChooserFragment : Fragment(), KoinComponent {
+class CityChooserFragment : BaseBindingFragment<FragmentCityChooserBinding>() {
 
     companion object {
         private const val TAG = "CityChooserFragment"
     }
 
-    private val cityChooserViewModel: CityChooserViewModel by viewModel()
+    private val cityChooserViewModel by sharedViewModel<CityChooserViewModel>()
+    private val cityChooserAdapter by inject<CityChooserAdapter> { parametersOf(cityChooserViewModel) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_city_chooser, container, false)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_city_chooser
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        binding.viewmodel = cityChooserViewModel
 
-        list_all_city.addItemDecoration(
+        binding.listAllCity.addItemDecoration(
             DividerItemDecoration(
                 this.context,
                 DividerItemDecoration.HORIZONTAL
             )
         )
-        list_all_city.addItemDecoration(
+        binding.listAllCity.addItemDecoration(
             DividerItemDecoration(
                 this.context,
                 DividerItemDecoration.VERTICAL
             )
         )
+        binding.listAllCity.layoutManager = GridLayoutManager(this.context, 3)
+        binding.listAllCity.adapter = cityChooserAdapter
 
-        val onCityClicked: (city: String) -> Unit = {
-            cityChooserViewModel.cityClicked(it)
-        }
-        val cityChooserAdapter: CityChooserAdapter = get{ parametersOf(onCityClicked) }
-        list_all_city.layoutManager = GridLayoutManager(this.context, 3)
-        list_all_city.adapter = cityChooserAdapter
-
-        cityChooserViewModel.cityClicked.observe(this.viewLifecycleOwner, Observer { city ->
-            if (city.isEmpty()) {
-                return@Observer
-            }
-            Log.e("KCTEST", "onItemClick -> $city")
-            this.view?.let { view ->
-                Snackbar.make(view, city, Snackbar.LENGTH_SHORT).show() }
+        cityChooserViewModel.allCity.observe(viewLifecycleOwner, Observer {
+            cityChooserAdapter.notifyDataSetChanged()
         })
 
-        cityChooserViewModel.allCity.observe(this.viewLifecycleOwner, Observer {
-            Log.d(TAG, "allCity changed!")
-            cityChooserAdapter.notifyDataSetChanged()
+        cityChooserViewModel.cityClicked.observe(viewLifecycleOwner, Observer { event ->
+            event.getContentIfNotHandled()?.let { city ->
+                if (city.isEmpty()) {
+                    Log.i(TAG, "city is empty")
+                    return@Observer
+                }
+                Log.d(TAG, "onItemClick -> $city")
+                activity?.findViewById<LinearLayout>(R.id.ll_city_chooser)?.let { it ->
+                    Snackbar.make(it, city, Snackbar.LENGTH_SHORT).show()
+                }
+            }
         })
     }
 }

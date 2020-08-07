@@ -13,7 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class StationPickerFragment : Fragment() {
 
     companion object {
-        fun newInstance() = StationPickerFragment()
+        private val TAG = "StationPickerFragment"
     }
 
     private val stationPickerViewModel: StationPickerViewModel by viewModel()
@@ -32,9 +32,9 @@ class StationPickerFragment : Fragment() {
 
 
         stationPickerViewModel.stationInfo.observe(this.viewLifecycleOwner, Observer {
-            Log.e("KCTEST", "Station size=" + it?.size)
+            Log.d(TAG, "Station size=" + it?.size)
             it?.forEach { stationInfoItem ->
-                Log.e("KCTEST", "Station name=" + stationInfoItem.stationName)
+                Log.d(TAG, "Station name=" + stationInfoItem.stationName)
             }
         })
 
