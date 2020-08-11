@@ -10,6 +10,7 @@ buildscript {
         nav_version = "2.3.0"
         paginglibrary = "3.0.0-alpha03"
         okhttp_logging_interceptor = "3.9.0"
+        room_version = "2.2.5"
     }
     repositories {
         google()

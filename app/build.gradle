@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -76,4 +77,10 @@ dependencies {
 
     // okhttp3 logging
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor"
+
+    // Room Database
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // Room Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
 }
