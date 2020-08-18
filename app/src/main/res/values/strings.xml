@@ -5,26 +5,47 @@
     <string name="arrive">Arrive</string>
     <string name="retry">Retry</string>
 
+    <string name="keelung">Keelung</string>
+    <string name="taipei">Taipei</string>
+    <string name="new_taipei">New Taipei</string>
+    <string name="taoyuan">Taoyuan</string>
+    <string name="hsinchu">Hsinchu</string>
+    <string name="miaoli">Miaoli</string>
+
+    <string name="taichung">Taichung</string>
+    <string name="changhua">Changhua</string>
+    <string name="nantou">Nantou</string>
+
+    <string name="yunlin">Yunlin</string>
+    <string name="chiayi">Chiayi</string>
+    <string name="tainan">Tainan</string>
+    <string name="kaohsiung">Kaohsiung</string>
+    <string name="pingtung">Pingtung</string>
+
+    <string name="yilan">Yilan</string>
+    <string name="hualien">Hualien</string>
+    <string name="taitung">Taitung</string>
+
     <string-array name="city_array">
-        <item name="keelung">Keelung</item>
-        <item name="taipei">Taipei</item>
-        <item name="new_taipei">New Taipei</item>
-        <item name="taoyuan">Taoyuan</item>
-        <item name="hsinchu">Hsinchu</item>
-        <item name="miaoli">Miaoli</item>
+        <item name="keelung">@string/keelung</item>
+        <item name="taipei">@string/taipei</item>
+        <item name="new_taipei">@string/new_taipei</item>
+        <item name="taoyuan">@string/taoyuan</item>
+        <item name="hsinchu">@string/hsinchu</item>
+        <item name="miaoli">@string/miaoli</item>
 
-        <item name="taichung">Taichung</item>
-        <item name="changhua">Changhua</item>
-        <item name="nantou">Nantou</item>
+        <item name="taichung">@string/taichung</item>
+        <item name="changhua">@string/changhua</item>
+        <item name="nantou">@string/nantou</item>
 
-        <item name="yunlin">Yunlin</item>
-        <item name="chiayi">Chiayi</item>
-        <item name="tainan">Tainan</item>
-        <item name="kaohsiung">Kaohsiung</item>
-        <item name="pingtung">Pingtung</item>
+        <item name="yunlin">@string/yunlin</item>
+        <item name="chiayi">@string/chiayi</item>
+        <item name="tainan">@string/tainan</item>
+        <item name="kaohsiung">@string/kaohsiung</item>
+        <item name="pingtung">@string/pingtung</item>
 
-        <item name="yilan">Yilan</item>
-        <item name="hualien">Hualien</item>
-        <item name="taitung">Taitung</item>
+        <item name="yilan">@string/yilan</item>
+        <item name="hualien">@string/hualien</item>
+        <item name="taitung">@string/taitung</item>
     </string-array>
 </resources>

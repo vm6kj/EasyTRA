@@ -1,8 +1,16 @@
 package com.kun.easytra.db
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 
 @Dao
 interface StationInfoDao {
-    fun getAll(): List<StationInfo>
+
+    @Query("SELECT * FROM city_stations WHERE city = :city")
+    fun getCityStations(city: String): CityStations
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertAll(cityStationsList: List<CityStations>)
 }

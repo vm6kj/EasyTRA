@@ -1,10 +1,8 @@
 package com.kun.easytra.app
 
 import androidx.multidex.MultiDexApplication
-import com.kun.easytra.di.fragmentModule
-import com.kun.easytra.di.mainModule
-import com.kun.easytra.di.networkModule
-import com.kun.easytra.di.viewModelModule
+import com.facebook.stetho.Stetho
+import com.kun.easytra.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
@@ -12,6 +10,7 @@ import org.koin.core.context.startKoin
 class EasyTRAApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
+        Stetho.initializeWithDefaults(this)
         initKoin()
     }
 
@@ -19,7 +18,7 @@ class EasyTRAApplication : MultiDexApplication() {
         startKoin {
             androidContext(this@EasyTRAApplication)
             fragmentFactory()
-            modules(viewModelModule, fragmentModule, networkModule, mainModule)
+            modules(viewModelModule, fragmentModule, networkModule, dbModule, daoModule, mainModule, gsonModule)
         }
     }
 }

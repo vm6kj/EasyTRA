@@ -5,24 +5,24 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.kun.easytra.R
-import com.kun.easytra.tradata.responsebody.StationInfo
+import com.kun.easytra.tradata.responsebody.StationInfoItem
 
-class AllStationAdapter : PagedListAdapter<StationInfo.StationInfoItem, StationInfoViewHolder>(
+class AllStationAdapter : PagedListAdapter<StationInfoItem, StationInfoViewHolder>(
     DIFF_CALLBACK) {
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StationInfo.StationInfoItem>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StationInfoItem>() {
             override fun areItemsTheSame(
-                oldItem: StationInfo.StationInfoItem,
-                newItem: StationInfo.StationInfoItem
+                oldItem: StationInfoItem,
+                newItem: StationInfoItem
             ): Boolean {
                 // Meaningless? Because the id is non-sequence
                 return oldItem.stationID == newItem.stationID
             }
 
             override fun areContentsTheSame(
-                oldItem: StationInfo.StationInfoItem,
-                newItem: StationInfo.StationInfoItem
+                oldItem: StationInfoItem,
+                newItem: StationInfoItem
             ): Boolean {
                 // Meaningless? Because the id is non-sequence
                 return oldItem == newItem

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.paging.ItemKeyedDataSource
 import com.kun.easytra.NetworkState
 import com.kun.easytra.tradata.repository.ITraRepository
-import com.kun.easytra.tradata.responsebody.StationInfo
+import com.kun.easytra.tradata.responsebody.StationInfoItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
@@ -15,14 +15,14 @@ import org.koin.core.inject
 class StationInfoItemKeyedDataSource(
     private var initialLoadState: NetworkState,
     private var loadMoreState: NetworkState
-) : ItemKeyedDataSource<Int, StationInfo.StationInfoItem>(), KoinComponent {
+) : ItemKeyedDataSource<Int, StationInfoItem>(), KoinComponent {
 
     private val TAG = "StationInfoDataSource"
     private val traRepository: ITraRepository by inject()
     private val scope: CoroutineScope by inject()
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<StationInfo.StationInfoItem>
+        callback: LoadInitialCallback<StationInfoItem>
     ) {
         val initKey = params.requestedInitialKey ?: 0
         val size = params.requestedLoadSize
@@ -33,7 +33,7 @@ class StationInfoItemKeyedDataSource(
             initialLoadState = NetworkState.LOADING
             val response = traRepository.getStationInfo(initKey, size)
             initialLoadState = if (response.isSuccessful) {
-                val item = response.body() as List<StationInfo.StationInfoItem>
+                val item = response.body() as List<StationInfoItem>
                 callback.onResult(item)
                 NetworkState.IDLE
             } else {
@@ -45,7 +45,7 @@ class StationInfoItemKeyedDataSource(
 
     override fun loadAfter(
         params: LoadParams<Int>,
-        callback: LoadCallback<StationInfo.StationInfoItem>
+        callback: LoadCallback<StationInfoItem>
     ) {
         if (NetworkState.LOADING == loadMoreState) return
 
@@ -60,7 +60,7 @@ class StationInfoItemKeyedDataSource(
             loadMoreState = NetworkState.LOADING
             val response = traRepository.getStationInfo(newKey, size)
             loadMoreState = if (response.isSuccessful) {
-                val item = response.body() as List<StationInfo.StationInfoItem>
+                val item = response.body() as List<StationInfoItem>
                 callback.onResult(item)
                 NetworkState.IDLE
             } else {
@@ -72,12 +72,12 @@ class StationInfoItemKeyedDataSource(
 
     override fun loadBefore(
         params: LoadParams<Int>,
-        callback: LoadCallback<StationInfo.StationInfoItem>
+        callback: LoadCallback<StationInfoItem>
     ) {
         // No need to implement
     }
 
-    override fun getKey(item: StationInfo.StationInfoItem): Int {
+    override fun getKey(item: StationInfoItem): Int {
         return 0
     }
 }

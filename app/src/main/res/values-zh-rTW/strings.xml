@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasyTRA</string>
+    <string name="departure">起站</string>
+    <string name="arrive">迄站</string>
+    <string name="retry">重試</string>
+
+    <string name="keelung">基隆</string>
+    <string name="taipei">臺北</string>
+    <string name="new_taipei">新北</string>
+    <string name="taoyuan">桃園</string>
+    <string name="hsinchu">新竹</string>
+    <string name="miaoli">苗栗</string>
+
+    <string name="taichung">臺中</string>
+    <string name="changhua">彰化</string>
+    <string name="nantou">南投</string>
+
+    <string name="yunlin">雲林</string>
+    <string name="chiayi">嘉義</string>
+    <string name="tainan">臺南</string>
+    <string name="kaohsiung">高雄</string>
+    <string name="pingtung">屏東</string>
+
+    <string name="yilan">宜蘭</string>
+    <string name="hualien">花蓮</string>
+    <string name="taitung">臺東</string>
+</resources>

@@ -1,6 +1,6 @@
 package com.kun.easytra.tradata
 
-import com.kun.easytra.tradata.responsebody.StationInfo
+import com.kun.easytra.tradata.responsebody.StationInfoItem
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -15,5 +15,5 @@ interface TraApiService {
         @Header("Authorization") auth: String,
         @Header("x-date") xDate: String,
         @QueryMap options: Map<String, String>
-    ): Response<StationInfo>
+    ): Response<List<StationInfoItem>>
 }

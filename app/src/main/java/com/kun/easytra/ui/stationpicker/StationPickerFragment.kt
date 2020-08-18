@@ -29,7 +29,12 @@ class StationPickerFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
+        stationPickerViewModel.cityStationsFromDb.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "cityStationsFromDb city=" + it.city)
+            it.stations.forEach {
+                Log.d(TAG, "cityStationsFromDb=" + it.stationName?.zh_tw)
+            }
+        })
 
         stationPickerViewModel.stationInfo.observe(this.viewLifecycleOwner, Observer {
             Log.d(TAG, "Station size=" + it?.size)

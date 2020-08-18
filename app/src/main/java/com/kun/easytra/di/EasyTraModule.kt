@@ -1,5 +1,8 @@
 package com.kun.easytra.di
 
+import androidx.room.Room
+import com.google.gson.Gson
+import com.kun.easytra.db.TraDataBase
 import com.kun.easytra.tradata.TraDataClient
 import com.kun.easytra.tradata.repository.ITraRepository
 import com.kun.easytra.tradata.repository.TraRepository
@@ -23,7 +26,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { StationChooserViewModel(androidApplication()) }
-    viewModel { StationPickerViewModel() }
+    viewModel { StationPickerViewModel(androidApplication()) }
     viewModel { AllStationViewModel() }
     viewModel { CityChooserViewModel(androidApplication()) }
 }
@@ -37,6 +40,26 @@ val fragmentModule = module {
 
 val networkModule = module {
     single { TraDataClient.getApiClient() }
+}
+
+val dbModule = module {
+    single {
+        Room.databaseBuilder(
+            androidApplication(),
+            TraDataBase::class.java,
+            TraDataBase::class.java.simpleName
+        )
+            // Not recommended in production app. Because it would recreate the tables if the
+            // migration that would migrate old database schemas to the latest schema version are
+            // not found.
+            // https://developer.android.com/reference/androidx/room/RoomDatabase.Builder#fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+}
+
+val daoModule = module {
+    single { get<TraDataBase>().stationInfoDao() }
 }
 
 val mainModule = module {
@@ -53,6 +76,9 @@ val mainModule = module {
     single { CoroutineScope(Dispatchers.IO) }
 }
 
+val gsonModule = module {
+    single { Gson() }
+}
 //val functionModule = module {
 //    single {  }
 //}
