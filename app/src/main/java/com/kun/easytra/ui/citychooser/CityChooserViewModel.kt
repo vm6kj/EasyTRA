@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.kun.easytra.Event
 import com.kun.easytra.tradata.repository.ITraRepository
 import com.kun.easytra.ui.BaseAndroidViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.core.inject
 
 class CityChooserViewModel(private val context: Application) : BaseAndroidViewModel(context) {
@@ -15,8 +17,8 @@ class CityChooserViewModel(private val context: Application) : BaseAndroidViewMo
     private val TAG = "CityChooserViewModel"
     private val traRepository by inject<ITraRepository>()
 
-    var allCity: MutableLiveData<List<String>> = MutableLiveData(emptyList())
-    var cityClicked: MutableLiveData<Event<String>> = MutableLiveData()
+    val allCity: MutableLiveData<List<String>> = MutableLiveData()
+    val cityClicked: MutableLiveData<Event<String>> = MutableLiveData()
 
     init {
         getAllCity()

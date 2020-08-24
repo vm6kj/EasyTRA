@@ -8,7 +8,7 @@ import com.kun.easytra.databinding.CityItemInCityChooserBinding
 class CityChooserAdapter(private val cityChooserViewModel: CityChooserViewModel) :
     RecyclerView.Adapter<CityChooserViewHolder>() {
 
-    private val allCity = cityChooserViewModel.allCity.value
+    private var allCity = emptyList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityChooserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,5 +24,10 @@ class CityChooserAdapter(private val cityChooserViewModel: CityChooserViewModel)
         allCity?.get(position)?.let {
             holder.bindTo(cityChooserViewModel, it)
         }
+    }
+
+    internal fun updateCityList(allCity: List<String>) {
+        this.allCity = allCity
+        notifyDataSetChanged()
     }
 }

@@ -10,6 +10,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.kun.easytra.R
 import com.kun.easytra.databinding.FragmentCityChooserBinding
 import com.kun.easytra.ui.BaseBindingFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
@@ -29,7 +32,7 @@ class CityChooserFragment : BaseBindingFragment<FragmentCityChooserBinding>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.viewmodel = cityChooserViewModel
+//        binding.viewmodel = cityChooserViewModel
 
         binding.listAllCity.addItemDecoration(
             DividerItemDecoration(
@@ -46,8 +49,8 @@ class CityChooserFragment : BaseBindingFragment<FragmentCityChooserBinding>() {
         binding.listAllCity.layoutManager = GridLayoutManager(this.context, 3)
         binding.listAllCity.adapter = cityChooserAdapter
 
-        cityChooserViewModel.allCity.observe(viewLifecycleOwner, Observer {
-            cityChooserAdapter.notifyDataSetChanged()
+        cityChooserViewModel.allCity.observe(viewLifecycleOwner, Observer { allCity ->
+            cityChooserAdapter.updateCityList(allCity)
         })
 
         cityChooserViewModel.cityClicked.observe(viewLifecycleOwner, Observer { event ->

@@ -1,12 +1,11 @@
 package com.kun.easytra.ui.stationpicker
 
-import android.R.id
 import android.app.Application
 import android.content.res.Resources
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.kun.easytra.db.CityStations
+import com.kun.easytra.db.model.CityStations
 import com.kun.easytra.tradata.repository.ITraRepository
 import com.kun.easytra.tradata.responsebody.StationInfoItem
 import com.kun.easytra.ui.BaseAndroidViewModel

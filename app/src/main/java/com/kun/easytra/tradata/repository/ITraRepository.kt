@@ -3,7 +3,7 @@ package com.kun.easytra.tradata.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import com.kun.easytra.db.CityStations
+import com.kun.easytra.db.model.CityStations
 import com.kun.easytra.tradata.responsebody.StationInfoItem
 import retrofit2.Response
 

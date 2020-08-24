@@ -1,4 +1,4 @@
-package com.kun.easytra.db
+package com.kun.easytra.db.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

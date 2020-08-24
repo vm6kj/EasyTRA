@@ -6,7 +6,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.kun.easytra.R
 import com.kun.easytra.Utils
-import com.kun.easytra.db.CityStations
+import com.kun.easytra.db.model.CityStations
 import com.kun.easytra.db.StationInfoDao
 import com.kun.easytra.db.TraDataBase
 import com.kun.easytra.tradata.TraApiService

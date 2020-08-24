@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.kun.easytra.db.model.CityStations
 
 @Dao
 interface StationInfoDao {
